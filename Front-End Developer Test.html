@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front-End Developer Test (蔡孟妤)</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.2/vue.global.js"></script>
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/close.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://use.typekit.net/wel8ibk.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- 輪播 -->
+    <link rel="stylesheet" href="front-end_test/slick/slick.css">
+    <link rel="stylesheet" href="front-end_test/slick/slick-theme.css">
+    <script src="front-end_test/slick/slick.min.js" type="text/javascript"></script>
+</head>
+<style>
+    body {
+        margin: 0;
+        max-width: 1500px;
+        margin: 0 auto;
+    }
+
+    p {
+        /* margin: 0; */
+        /* font-family: 'Proxima Nova', sans-serif; */
+        font-family: 'proxima-nova', sans-serif;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .cover {
+        position: relative;
+    }
+
+    .cover_bg {
+        position: relative;
+        z-index: -1;
+        border-radius: 0 0 30px 30px;
+        overflow: hidden;
+    }
+
+    .cover_upper {
+        position: absolute;
+        top: 0;
+        width: 95%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding-top: 2%;
+        display: flex;
+        flex-direction: column;
+        height: 96%;
+        justify-content: space-between;
+    }
+
+    .cover_upper .nav {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+    }
+
+    .cover_upper .nav p {
+        margin: 0 1%;
+        background: linear-gradient(90deg, #4EE5EA 3.94%, #26D0A8 94.73%);
+        border-radius: 24px;
+        padding: .65% 1.5%;
+        color: white;
+        font-size: .3rem;
+    }
+
+    .cover_middle {
+        display: flex;
+    }
+
+    .cover_middle .middle_left {
+        width: 15%;
+        transform: rotate(-90deg);
+    }
+
+    .cover_middle .middle_left>p {
+        width: 25%;
+        white-space: nowrap;
+        color: white;
+    }
+
+    .cover_middle .middle_left img {
+        transform: rotate(270deg) translateY(-70px);
+        width: 6%;
+        display: inline-block;
+    }
+
+    .cover_middle .middle_right {
+        width: 100%;
+    }
+
+    .cover_middle .middle_right .logo {
+        width: 15%;
+    }
+
+    .cover_middle .middle_right .middle_text {
+        color: white;
+        letter-spacing: .25em;
+        font-weight: 700;
+        font-size: 1.8em;
+    }
+
+    .cover_bottom .button_group {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cover_bottom .button_group img {
+        width: 5%;
+    }
+
+    .cover_bottom .button_group p {
+        color: white;
+        font-size: .3em;
+        letter-spacing: .3em;
+        padding: .5% 0 5% 0;
+    }
+
+    .about {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 8% 0 20% 0;
+        background-color: rgba(242, 242, 242, 1);
+        transform: scaleY(1.1);
+        position: relative;
+        z-index: -2;
+    }
+
+    .about>div {
+        width: 70%;
+        text-align: center;
+    }
+
+    .about_title,
+    .about_botton,
+    .ingre_title_wrap,
+    .ingre_big_botton,
+    .exp_title_wrap {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    .ingre_title_wrap,
+    .exp_title_wrap {
+        display: block;
+    }
+
+    .about_title_wrap>p,
+    .award_title_wrap>p,
+    .ingre_title_wrap>p,
+    .exp_title_wrap>p {
+        display: inline-block;
+        margin-bottom: 0;
+    }
+
+    .about_video {
+        padding: 3% 0;
+    }
+
+    .about_content>p,
+    .award_content>p,
+    .ingre_big_content>p {
+        font-size: .8em;
+        line-height: 2em;
+    }
+
+    .exp_content {
+        width: 80%;
+    }
+
+    .exp_content>p {
+        line-height: 1.5em;
+        text-align: center;
+        letter-spacing: .05em;
+        padding: 5% 0;
+    }
+
+    .ingre_big_content {
+        color: white;
+        padding: 5% 12%;
+        text-align: center;
+    }
+
+    .about_botton>p,
+    .ingre_big_botton>p {
+        background-color: #26C6D0;
+        padding: 3%;
+        color: white;
+        font-size: .9em;
+    }
+
+    .ingre_big_botton>p {
+        background: rgba(88, 88, 128, 1);
+        padding: 10%;
+    }
+
+    .award,
+    .profile {
+        width: 85%;
+        background-size: cover;
+    }
+
+    .profile .pro_name {
+        letter-spacing: .1em;
+        font-weight: 800;
+        margin: 0;
+    }
+
+    .profile .pro_intro {
+        font-style: italic;
+        letter-spacing: .1em;
+    }
+
+    .award {
+        margin: -15% 0 0 auto;
+        display: flex;
+        padding: 5% 3% 5% 2%;
+        align-items: end;
+        background-color: white;
+        border-radius: 25px 0 25px 25px;
+        position: relative;
+    }
+
+    .profile {
+        background: url('front-end_test/pro_bg.png');
+        background-repeat: no-repeat;
+        padding: 5%;
+        margin: -16% auto 0 0;
+        background-size: cover;
+        border-radius: 0 25px 25px 25px;
+    }
+
+    .profile .pro_left>img {
+        width: 50%;
+        display: block;
+        margin: 0 auto;
+        padding: 5%;
+    }
+
+    .profile p {
+        color: white;
+    }
+
+    .pro_right {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+    }
+
+    .profile .pro_right>img {
+        width: 10%;
+        padding-bottom: 3%;
+    }
+
+    .profile .pro_right>p {
+        color: white;
+        line-height: 2em;
+        letter-spacing: .15em;
+        font-weight: 400;
+    }
+
+    .profile .pro_left>p {
+        text-align: center;
+    }
+
+    .award .award_right {
+        display: flex;
+    }
+
+    .award_title {
+        width: 30%;
+    }
+
+    .award_title_wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .award_title_wrap>p,
+    .ingre_title_wrap>p,
+    .about_title_wrap>p,
+    .exp_title_wrap>p {
+        letter-spacing: .15em;
+        font-size: 1.3em;
+        padding-bottom: 1.5%;
+        font-weight: 800;
+    }
+
+    .exp_title_wrap>p {
+        padding-left: 5%;
+    }
+
+    .ingre_title_wrap>p {
+        color: white;
+        padding-left: 8%;
+    }
+
+    .ingredients {
+        background-color: #26C6D0;
+        margin: -5%;
+        width: 100%;
+        padding: 12% 8% 25% 8%;
+        margin: -5% 0 auto;
+        border-radius: 25px;
+    }
+
+    .ingredients .ingre_wrap {
+        padding: 2% 0;
+    }
+
+    .ingredients .ingre_icon {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto;
+        background-image: url('front-end_test/icon/Ellipse 1.png');
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: contain;
+    }
+
+    .ingredients .ingre_icon img {
+        width: 45%;
+    }
+
+    .ingredients .ingre_innertitle {
+        font-family: 'Proxima Nova', sans-serif;
+        color: white;
+        font-size: .85rem;
+        letter-spacing: .1em;
+        padding: 5%;
+        font-weight: 600;
+    }
+
+    .ingredients .ingre_content {
+        padding: 0 14%;
+        font-size: .9em;
+        color: white;
+        text-align: center;
+        /* line-height: 2em; */
+    }
+
+    .ingredients .ingre_button {
+        color: white;
+        padding: 3% 7%;
+        border: 1px white solid;
+        border-radius: 40px;
+    }
+
+    .ingredients .ingre_button>p,
+    .case_button p {
+        margin: 0;
+        font-size: .8em;
+        letter-spacing: .1em;
+    }
+
+    .case_button {
+        width: 25%;
+        padding: 5% 3%;
+        background: #26C6D0;
+        margin-top: -5%;
+        text-align: center;
+    }
+
+    .case_button p {
+        margin: 0
+    }
+
+    .exp {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 23%;
+        margin-top: -17%;
+        background-color: white;
+        position: relative;
+        z-index: -1;
+    }
+
+    .nav_button,
+    .nav_close {
+        cursor: pointer;
+    }
+
+    .case {
+        /* background: url('front-end_test/case_bg.png'); */
+    }
+
+    @media(max-width: 767px) {
+        .cover_middle .middle_right .middle_text {
+            font-size: 1.3em;
+        }
+
+        .cover_bottom .button_group p {
+            padding: .5% 0 3% 0;
+        }
+    }
+
+    @media(max-width: 480px) {
+        .cover_middle .middle_right .middle_text {
+            font-size: .8em;
+        }
+
+    }
+</style>
+
+<body>
+    <div id="home_page">
+        <div class="cover">
+            <div class="cover_bg">
+                <video controls muted playsinline loop autoplay style="width:100%">
+                    <source src="front-end_test\DigiSalad Website Video-v3.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="cover_upper">
+                <div class="nav">
+                    <p>START YOUR PROJECT</p>
+                    <div class="nav_button"><img src="front-end_test\Menu - simple-line-icons.png" alt=""></div>
+                </div>
+                <div class="cover_middle">
+                    <div class="middle_left">
+                        <p><img src="front-end_test/Linewhite.png" alt=""> DIGITAL AGENCY</p>
+                    </div>
+                    <div class="middle_right">
+                        <div class="logo">
+                            <img src="front-end_test\logo.png" alt="">
+                        </div>
+                        <div class="middle_text">
+                            <p>WE CREATE</p>
+                            <p>AMAZINH</p>
+                            <p>DIGITAL EXPERIENCES</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cover_bottom">
+                    <div class="button_group">
+                        <img src="front-end_test\cover_button.png" alt="">
+                        <p>TASTE US NOW</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="about" class="about">
+            <div class="about_title">
+                <div class="about_title_wrap">
+                    <p>ABOUT DIGISALAD</p><img src="front-end_test/Red_Dot.png" alt=""
+                        style="margin-left: 3%;;width: 10px;display: inline-block;">
+                    <img src="front-end_test\about_title.png" alt="">
+                </div>
+
+            </div>
+            <div class="about_video">
+                <video controls muted playsinline loop autoplay style="width:100%">
+                    <source src="front-end_test\about_video.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="about_content">
+                <p>
+                    Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis
+                    tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare. Phasellus at semper
+                    turpis. Nunc eu tellus tortor. Etiam at condimentum nisl, vitae sagittis orci. Donec id dignissim
+                    nunc. Donec elit ante, eleifend a dolor et, venenatis facilisis dolor. In feugiat orci odio, sed
+                    lacinia sem elementum quis. Aliquam consectetur, eros et vulputate euismod, nunc leo tempor lacus,
+                    ac rhoncus neque eros nec lacus. Cras lobortis molestie faucibus.
+                </p>
+            </div>
+            <div class="about_botton">
+                <p>VIEW MORE ————</p>
+            </div>
+        </div>
+        <div class="award">
+            <div class="award_left">
+                <div class="award_title">
+                    <div class="award_title_wrap">
+                        <p>AWARDS</p>
+                        <img src="front-end_test/award_title.png" alt="">
+                    </div>
+                </div>
+                <div class="award_content">
+                    <p>
+                        Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum.
+                        Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare. Phasellus at
+                        semper turpis. Nunc eu tellus tortor. Etiam at condimentum nisl, vitae sagittis orci. Donec id
+                        dignissim nunc.
+                    </p>
+                </div>
+
+            </div>
+            <div class="award_right">
+                <div>
+                    <img src="front-end_test\reward.png" alt="">
+                    <img src="front-end_test\reward.png" alt="">
+                </div>
+                <div>
+                    <img src="front-end_test\reward.png" alt="">
+                    <img src="front-end_test\reward.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div id="career" class="ingredients">
+            <div class="ingre_title">
+                <div class="ingre_title_wrap">
+                    <p>OUR INGRADIENTS</p><img src="front-end_test/Red_Dot.png" alt=""
+                        style="margin-left: 3%;;width: 10px;display: inline-block;">
+                    <img src="front-end_test/ingre_title.png" alt="">
+                </div>
+                <div class="ingre_big_content">
+                    <p>Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum.
+                        Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare. Phasellus at
+                        semper turpis. Nunc eu tellus tortor. Etiam at condimentum nisl, vitae sagittis orci. Donec id
+                        dignissim nunc. Donec elit ante, eleifend a dolor et, venenatis facilisis dolor. In feugiat orci
+                        odio, sed lacinia sem elementum quis. Aliquam consectetur, eros et vulputate euismod, nunc leo
+                        tempor lacus, ac rhoncus neque eros nec lacus. Cras lobortis molestie faucibus.</p>
+                </div>
+                <div class="ingre_big_botton">
+                    <p>OUR SERVICES ————</p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="d-flex align-items-center flex-wrap">
+                        <div class="ingre_wrap col-md-4 d-flex flex-column align-items-center"
+                            v-for="item in igredients" :key="item.id">
+                            <div class="ingre_icon"><img :src="item.icon" alt=""></div>
+                            <div class="ingre_innertitle">{{item.title}}</div>
+                            <div class="ingre_content">
+                                <p>{{item.content}}</p>
+                            </div>
+                            <div class="ingre_button">
+                                <p>VIEW MORE</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                style="width: 30%;margin: 0 auto; color: white; letter-spacing: .1em; text-align: center; margin-top: 5%;font-size: .8em;">
+                <p style="margin: 0; z-index: 2;position: relative;">VIEW MORE DIGISALAD’S INGRADIENTS</p><img
+                    src="front-end_test/orangeline.png" alt="" style="margin-top: -7%;">
+            </div>
+        </div>
+        <div class="profile row">
+            <div class="pro_left col-md-5">
+                <img src="front-end_test/pro_pic.png" alt="">
+                <p class="pro_name">Tony Ng</p>
+                <p class="pro_intro">Founder & Creative Director</p>
+            </div>
+            <div class="pro_right col-md-7">
+                <img src="front-end_test/left-quote1.png" alt="">
+                <p>A great digital work isn’t about designing beautiful pages purely. It is about context - how do we
+                    deliver the <span style="color: rgba(255, 188, 88, 1);">right experience to the right person at the
+                        right time.</span>
+                    The most important thing is that
+                    your work can engage customers at anytime, anywhere and let users experience an entire amazing
+                    digital journey.</p>
+            </div>
+        </div>
+        <div class="exp row">
+            <div id="exp" class="exp_title">
+                <div class="exp_title_wrap">
+                    <p>OUR BRAND EXPERIENCE</p><img src="front-end_test/Red_Dot.png" alt=""
+                        style="margin-left: 3%;;width: 10px;display: inline-block;">
+                    <img src="front-end_test/exp_title.png" alt="">
+                </div>
+            </div>
+            <div class="exp_content">
+                <p>Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis
+                    tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare. Phasellus at semper
+                    turpis. Nunc eu tellus tortor. Etiam at condimentum nisl, vitae sagittis orci. Donec id dignissim
+                    nunc. Donec elit ante, eleifend a dolor et, venenatis facilisis dolor. In feugiat orci odio, sed
+                    lacinia sem elementum quis. Aliquam consectetur, eros et vulputate euismod, nunc leo tempor lacus,
+                    ac rhoncus neque eros nec lacus. Cras lobortis molestie faucibus.</p>
+            </div>
+            <div class="col-10">
+                <img src="front-end_test/icon_container.png" alt="">
+            </div>
+        </div>
+        <div class="case">
+            <div class="case_wrap" style="width:100%;">
+                <img src="front-end_test/case_bg.png" alt="">
+                <div id="works" class="case_item">
+                    <section class="case_content">
+                        <div class="case_single row d-flex justify-content-center align-items-center"
+                            v-for="item in slides" :key="item.id">
+                            <div class="slide_num">
+                                <p>{{item.id}}</p>
+                                <img src="front-end_test/Line.png" alt="">
+                                <p style="margin-top: 2%;margin-left: 1%">04</p>
+                            </div>
+                            <div class="case_image col-6">
+                                <img :src="item.case_image" alt="">
+                            </div>
+                            <div class="case_text col-6">
+                                <p class="case_category">{{item.case_category}}</p>
+                                <p class="case_name">{{item.case_name}}</p>
+                                <div class="d-flex align-content-center case_hr">
+                                    <hr><span style="position:inline-block;width:10px;height:10px"><img
+                                            src="front-end_test/Red_Dot.png" alt=""></span>
+                                </div>
+                                <p class="case_intro">{{item.case_intro}}</p>
+                            </div>
+                            <div class="case_button">
+                                <p>VIEW PROJECT ————</p>
+                            </div>
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="interstitial">
+            <img src="front-end_test/rec_bg.png" alt="" style="height: 100vh">
+            <div class="upper_nav">
+                <div class="logo_close">
+                    <div class="logo"><img src="front-end_test/nav/Logo.png" alt=""></div>
+                    <i class="gg-close nav_close"></i>
+                </div>
+
+                <div class="link">
+                    <!-- <a class="about_us_link" href="#about"></a> -->
+                    <a v-for="item in link" :key="item.class" :href="item.link_to" class="position-relative link_item"
+                        :style="item.style_css.box">
+                        <img :src="item.background" alt="">
+                        <div class="position-absolute" :style="item.style_css.inner">
+                            <img :src="item.icon" alt="" :style="item.style_css.img">
+                            <div class="link_text">
+                                <p class="sub_title">{{item.sub_title}}</p>
+                                <p class="title" :style="item.special_color">{{item.title}}<span><img
+                                            src="front-end_test/Red_Dot.png" alt=""></span></p>
+                            </div>
+
+                        </div>
+
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+<script src="front-end_test/slick/slick.min.js" type="text/javascript"></script>
+<style>
+    .upper_nav {
+        position: absolute;
+        top: 0;
+    }
+
+    .logo_close {
+        max-width: 1500px;
+        padding: 3% 3% 0% 3%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .link a {
+        display: inline-block;
+    }
+
+    .link_text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .link_text p {
+        margin: 0;
+        /* text-align: center; */
+        letter-spacing: .2em
+    }
+
+    .link_text span {
+        display: inline-block;
+        width: 10px;
+    }
+
+    .link_text .sub_title {
+        font-size: .8em;
+    }
+
+    .link_text .title {
+        font-size: 1.7em;
+        font-weight: 800;
+    }
+
+    .gg-close {
+        box-sizing: border-box;
+        position: relative;
+        display: block;
+        transform: scale(var(--ggs, 2));
+        width: 22px;
+        height: 22px;
+        border: 2px solid transparent;
+        border-radius: 40px;
+        color: white
+    }
+
+    .gg-close::after,
+    .gg-close::before {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        position: absolute;
+        width: 16px;
+        height: 2px;
+        background: currentColor;
+        transform: rotate(45deg);
+        border-radius: 5px;
+        top: 8px;
+        left: 1px
+    }
+
+    .gg-close::after {
+        transform: rotate(-45deg)
+    }
+</style>
+<style>
+    .about_us_link {
+        background: url('front-end_test/nav/about_us_link.png');
+    }
+
+    .interstitial {
+        position: fixed;
+        top: 0;
+        width: 1500px;
+        height: 100vh;
+        background: url('front-end_test/BG.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin: 0 auto;
+    }
+
+    .slick-prev:before {
+        content: url('front-end_test/prev.png')
+    }
+
+    .slick-prev,
+    .slick-next {
+        /* width: 55px;
+        height: 55px; */
+    }
+
+    .slick-prev {
+        left: -85px;
+    }
+
+    .slick-next {
+        right: -60px;
+    }
+
+    .slick-next:before {
+        content: url('front-end_test/next.png')
+    }
+
+    .case {
+        /* z-index: -2; */
+        position: relative;
+        margin-top: -20%;
+        /* height: 95vh; */
+    }
+
+    .case_hr {
+        margin-top: -7%;
+        margin-bottom: 10%;
+    }
+
+    .case_wrap {
+        margin: 0 auto;
+        position: relative;
+        /* height: 145%; */
+    }
+
+    .case_wrap>img {
+        transform: scaleY(.6);
+    }
+
+    .case_item {
+        position: absolute;
+        top: 28.5%;
+        right: 16%;
+        width: 67%;
+    }
+
+    .case .case_wrap .case_single {
+        color: white;
+        /* transform: translateX(3%); */
+    }
+
+    .case_name {
+        font-size: 1.5em;
+        letter-spacing: .2em;
+        font-weight: 700;
+        /* border-bottom: 3px solid white; */
+        width: fit-content;
+    }
+
+    .case_intro {
+        font-size: .8em;
+    }
+
+    .case_image>img {
+        border-radius: 20px;
+    }
+
+    .case_text hr,
+    .case_text span {
+        display: inline-block;
+    }
+
+    .case_text hr {
+        width: 85%;
+        color: #26C6D0;
+        padding: .5% 0;
+        margin: 0.5% 3% .5% 0;
+    }
+
+    .slide_num {
+        display: flex;
+        justify-content: end;
+        width: 90%;
+        font-size: .5em;
+        letter-spacing: .2em;
+    }
+
+    .slide_num>img {
+        transform: translateY(-4px) scale(.7) rotate(25deg);
+        width: 2%;
+    }
+</style>
+<script>
+
+</script>
+<script>
+    $(document).ready(function () {
+        $('.interstitial').hide()
+        $(".case_content").slick({
+            dots: false,
+            arrows: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+        });
+        $('.nav_close,.link_item').on('click', function () {
+            $('.interstitial').hide()
+        })
+        $('.nav_button').on('click', function () {
+            $('.interstitial').show()
+        })
+    })
+    const App = {
+        data() {
+            return {
+                igredients: [
+                    {
+                        id: 1,
+                        icon: 'front-end_test/icon/icon1.png',
+                        title: 'UX Design',
+                        content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
+                    },
+                    {
+                        id: 2,
+                        icon: 'front-end_test/icon/icon2.png',
+                        title: 'UI Design',
+                        content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
+                    },
+                    {
+                        id: 3,
+                        icon: 'front-end_test/icon/icon3.png',
+                        title: 'website development',
+                        content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
+                    },
+                    {
+                        id: 4,
+                        icon: 'front-end_test/icon/icon4.png',
+                        title: 'mobile app development',
+                        content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
+                    },
+                    {
+                        id: 5,
+                        icon: 'front-end_test/icon/icon5.png',
+                        title: 'ecommerce',
+                        content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
+                    },
+                    {
+                        id: 6,
+                        icon: 'front-end_test/icon/icon6.png',
+                        title: 'customer loyalty',
+                        content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
+                    },
+                    {
+                        id: 7,
+                        icon: 'front-end_test/icon/icon7.png',
+                        title: 'digital transformation',
+                        content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
+                    },
+                    {
+                        id: 8,
+                        icon: 'front-end_test/icon/icon8.png',
+                        title: 'digital marketing',
+                        content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
+                    },
+                    {
+                        id: 9,
+                        icon: 'front-end_test/icon/icon9.png',
+                        title: 'BRANDING',
+                        content: 'Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.'
+                    },
+                ],
+                link: [
+                    {
+                        link_to: '#about',
+                        class_name: 'about_link',
+                        background: "front-end_test/nav/about_us_link.png",
+                        style_css: {
+                            box: {
+                                'margin-left': '12%',
+                                'margin-top': '-5%'
+                            },
+                            inner: {
+                                top: '40%',
+                                'text-decoration': 'none',
+                                display: 'flex',
+                                color: 'white',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                width: '70%',
+
+                            },
+                            img: {
+                                width: '35px',
+                                height: '55px',
+                                'margin-right': '5%',
+                            }
+                        },
+                        icon: 'front-end_test/icon/icon1.png',
+                        title: 'ABOUT US',
+                        special_color: {
+                        },
+                        sub_title: 'EMPOWERING BRANDS'
+                    },
+                    {
+                        link_to: '#career',
+                        class_name: 'career_link',
+                        background: "front-end_test/nav/career_link.png",
+                        style_css: {
+                            box: {
+                                'margin-left': '3%'
+                            },
+                            inner: {
+                                bottom: '15%',
+                                'text-decoration': 'none',
+                                display: 'flex',
+                                color: 'white',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                width: '70%',
+                                'flex-direction': 'column'
+                            },
+                            img: {
+                                width: '60px',
+                                height: '35px',
+                                'margin-bottom': '5%'
+                            }
+                        },
+                        icon: 'front-end_test/icon/cheese.png',
+                        title: 'CAREERS',
+                        special_color: {
+                        },
+                        sub_title: 'BE COOL WITH US'
+                    },
+                    {
+                        link_to: '#exp',
+                        class_name: 'service_link',
+                        background: "front-end_test/nav/service_link.png",
+                        style_css: {
+                            box: {
+                                'margin-left': '3%'
+                            },
+                            inner: {
+                                bottom: '15%',
+                                'text-decoration': 'none',
+                                display: 'flex',
+                                color: 'white',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                width: '70%',
+                                'flex-direction': 'column'
+                            },
+                            img: {
+                                width: '25px',
+                                height: '35px',
+                                'margin-bottom': '5%'
+                            }
+                        },
+                        icon: 'front-end_test/icon/caroat.png',
+                        title: 'SERVICES',
+                        special_color: {
+                        },
+                        sub_title: 'AREAS OF EXPERTISE'
+                    },
+                    {
+                        link_to: '#works',
+                        class_name: 'works_link',
+                        background: "front-end_test/nav/work_link.png",
+                        style_css: {
+                            box: {
+                                'margin-left': '12%',
+                                'margin-top': '-5%',
+                                'float': 'left'
+                            },
+                            inner: {
+                                bottom: '15%',
+                                'text-decoration': 'none',
+                                display: 'flex',
+                                color: 'white',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                width: '70%',
+                                'flex-direction': 'column'
+                            },
+                            img: {
+                                width: '35px',
+                                height: '35px',
+                                'margin-bottom': '5%'
+                            }
+                        },
+                        icon: 'front-end_test/icon/tomato.png',
+                        title: 'WORKS',
+                        special_color: {
+                        },
+                        sub_title: 'CASE STUDIES'
+                    },
+                    {
+                        link_to: '#about',
+                        class_name: 'insights_link',
+                        background: "front-end_test/nav/insights.png",
+                        style_css: {
+                            box: {
+                                'margin-left': '3%',
+                                'margin-top': '3%',
+                                'float': 'left'
+                            },
+                            inner: {
+                                bottom: '15%',
+                                'text-decoration': 'none',
+                                display: 'flex',
+                                color: 'white',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                width: '70%',
+                                'flex-direction': 'column'
+                            },
+                            img: {
+                                width: '20px',
+                                height: '55px',
+                                'margin-bottom': '5%'
+                            }
+                        },
+                        icon: 'front-end_test/icon/cucumber.png',
+                        title: 'INSIGHTS',
+                        special_color: {
+                        },
+                        sub_title: 'OUR STRATEGIES'
+                    },
+                    {
+                        link_to: '#contact',
+                        class_name: 'contact_link',
+                        background: "front-end_test/nav/contact_link.png",
+                        style_css: {
+                            box: {
+                                'margin-left': '3%',
+                                'float': 'left'
+                            },
+                            inner: {
+                                bottom: '30%',
+                                'text-decoration': 'none',
+                                display: 'flex',
+                                color: 'black',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                width: '70%',
+                                'flex-direction': 'column'
+                            },
+                            img: {
+                                width: '20px',
+                                height: '55px',
+                                'margin-bottom': '5%',
+                                display: 'none'
+                            }
+                        },
+                        icon: '',
+                        title: 'CONTACT',
+                        special_color: {
+                            color: '#26C6D0'
+                        },
+                        sub_title: 'START YOUR JOURNEY WITH US'
+                    }
+                ],
+                slides: [
+                    {
+                        id: '01',
+                        case_image: 'front-end_test/case1.png',
+                        case_category: 'HIGHLIGHTED SHOWCASE',
+                        case_name: 'LP CLUB MOBILE APP',
+                        case_intro: `Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras
+                                    ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam
+                                    condimentum vitae ligula vel ornare. Phasellus at semper turpis. Nunc eu tellus
+                                    tortor. Etiam at condimentum nisl, vitae sagittis orci. Donec id dignissim nunc.
+                                    Donec elit ante, eleifend a dolor et, venenatis facilisis dolor. In feugiat orci
+                                    odio, sed lacinia sem elementum quis. Aliquam consectetur, eros et vulputate
+                                    euismod, nunc leo tempor lacus, ac rhoncus neque eros nec lacus. Cras lobortis
+                                    molestie faucibus.`
+                    },
+                    {
+                        id: '02',
+                        case_image: 'front-end_test/case1.png',
+                        case_category: 'HIGHLIGHTED SHOWCASE',
+                        case_name: 'LP CLUB MOBILE APP',
+                        case_intro: `Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras
+                                    ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam
+                                    condimentum vitae ligula vel ornare. Phasellus at semper turpis. Nunc eu tellus
+                                    tortor. Etiam at condimentum nisl, vitae sagittis orci. Donec id dignissim nunc.
+                                    Donec elit ante, eleifend a dolor et, venenatis facilisis dolor. In feugiat orci
+                                    odio, sed lacinia sem elementum quis. Aliquam consectetur, eros et vulputate
+                                    euismod, nunc leo tempor lacus, ac rhoncus neque eros nec lacus. Cras lobortis
+                                    molestie faucibus.`
+                    }
+                ]
+            }
+        }
+    }
+    Vue.createApp(App).mount('#home_page');
+</script>
+
+</html>
